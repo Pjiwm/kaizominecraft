@@ -3,6 +3,7 @@ package nl.pjiwm.kaizominecraft.listeners;
 import net.minecraft.server.v1_16_R3.Entity;
 import net.minecraft.server.v1_16_R3.WorldServer;
 import nl.pjiwm.kaizominecraft.mobs.CustomChicken;
+import nl.pjiwm.kaizominecraft.mobs.CustomCow;
 import nl.pjiwm.kaizominecraft.mobs.CustomPig;
 import nl.pjiwm.kaizominecraft.mobs.CustomSheep;
 import org.bukkit.Location;
@@ -61,6 +62,9 @@ public class SpawnCustomMob implements Listener {
             case PIG:
                 e.getEntity().remove();
                 spawnMob(new CustomPig(spawnLocation));
+            case COW:
+                e.getEntity().remove();
+                spawnMob(new CustomCow(spawnLocation));
         }
 
 
