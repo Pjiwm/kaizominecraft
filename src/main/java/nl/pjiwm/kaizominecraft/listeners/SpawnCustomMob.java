@@ -65,6 +65,9 @@ public class SpawnCustomMob implements Listener {
             case IRON_GOLEM:
                 e.getEntity().remove();
                 spawnMob(new CustomIronGolem(spawnLocation));
+            case WOLF:
+                e.getEntity().remove();
+                spawnMob(new CustomWolf(spawnLocation));
         }
 
 
