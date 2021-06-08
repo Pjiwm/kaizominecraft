@@ -68,6 +68,9 @@ public class SpawnCustomMob implements Listener {
             case WOLF:
                 e.getEntity().remove();
                 spawnMob(new CustomWolf(spawnLocation));
+            case ZOMBIFIED_PIGLIN:
+                e.getEntity().remove();
+                spawnMob(new CustomPigZombie(spawnLocation));
         }
 
 
