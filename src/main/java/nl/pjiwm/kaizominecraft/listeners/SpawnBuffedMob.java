@@ -3,10 +3,7 @@ package nl.pjiwm.kaizominecraft.listeners;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -32,6 +29,10 @@ public class SpawnBuffedMob implements Listener {
                 buffCreeper(creeper);
             case ZOMBIFIED_PIGLIN:
                 PigZombie pigZombie = (PigZombie) e.getEntity();
+                buffPigZombie(pigZombie);
+            case WOLF:
+                Wolf wolf = (Wolf) e.getEntity();
+                buffWolf(wolf);
 
         }
     }
@@ -57,5 +58,10 @@ public class SpawnBuffedMob implements Listener {
         stack.addEnchantment(Enchantment.FIRE_ASPECT, 1);
         stack.addEnchantment(Enchantment.VANISHING_CURSE, 1);
         pigZombie.getEquipment().setItemInMainHand(stack);
+    }
+    
+    private void buffWolf(Wolf wolf) {
+        PotionEffect effect = new PotionEffect(PotionEffectType.JUMP, 1000000, 4, false, false, false);
+        wolf.addPotionEffect(effect);
     }
 }
