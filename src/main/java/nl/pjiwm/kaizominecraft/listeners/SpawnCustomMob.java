@@ -2,7 +2,7 @@ package nl.pjiwm.kaizominecraft.listeners;
 
 import net.minecraft.server.v1_16_R3.Entity;
 import net.minecraft.server.v1_16_R3.WorldServer;
-import nl.pjiwm.kaizominecraft.mobs.CustomChicken;
+import nl.pjiwm.kaizominecraft.mobs.*;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
@@ -23,7 +23,6 @@ public class SpawnCustomMob implements Listener {
     public SpawnCustomMob(JavaPlugin plugin) {
         entityKey = new NamespacedKey(plugin, "custom");
     }
-
     /**
      * Spawns a custom NMS mob into a minecraft world
      * @param entity the custom mob that will be spawned and replace the original mob
@@ -36,7 +35,6 @@ public class SpawnCustomMob implements Listener {
         WorldServer world = ((CraftWorld) Objects.requireNonNull(location.getWorld())).getHandle();
         world.addEntity(entity, CreatureSpawnEvent.SpawnReason.NATURAL);
     }
-
     /**
      * removes any non custom mob if there's a custom mob variant
      * and checks with which custom mob to replace with.
@@ -53,9 +51,24 @@ public class SpawnCustomMob implements Listener {
             case CHICKEN:
                 e.getEntity().remove();
                 spawnMob(new CustomChicken(spawnLocation));
+            case SHEEP:
+                e.getEntity().remove();
+                spawnMob(new CustomSheep(spawnLocation));
+            case PIG:
+                e.getEntity().remove();
+                spawnMob(new CustomPig(spawnLocation));
+            case COW:
+                e.getEntity().remove();
+                spawnMob(new CustomCow(spawnLocation));
+            case IRON_GOLEM:
+                e.getEntity().remove();
+                spawnMob(new CustomIronGolem(spawnLocation));
+            case WOLF:
+                e.getEntity().remove();
+                spawnMob(new CustomWolf(spawnLocation));
+            case ZOMBIFIED_PIGLIN:
+                e.getEntity().remove();
+                spawnMob(new CustomPigZombie(spawnLocation));
         }
-
-
-
     }
 }
