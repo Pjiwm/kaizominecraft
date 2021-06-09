@@ -28,12 +28,16 @@ public class SpawnBuffedMob implements Listener {
         switch (entity.getType()) {
             case CREEPER:
                 buffCreeper((Creeper) entity);
+                break;
             case ZOMBIFIED_PIGLIN:
                 buffPigZombie((PigZombie) entity);
+                break;
             case WOLF:
                 buffWolf((Wolf) entity);
+                break;
             case STRAY:
                 buffStray((Stray) entity);
+                break;
         }
     }
 
