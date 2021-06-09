@@ -23,7 +23,6 @@ public class SpawnCustomMob implements Listener {
     public SpawnCustomMob(JavaPlugin plugin) {
         entityKey = new NamespacedKey(plugin, "custom");
     }
-
     /**
      * Spawns a custom NMS mob into a minecraft world
      * @param entity the custom mob that will be spawned and replace the original mob
@@ -36,7 +35,6 @@ public class SpawnCustomMob implements Listener {
         WorldServer world = ((CraftWorld) Objects.requireNonNull(location.getWorld())).getHandle();
         world.addEntity(entity, CreatureSpawnEvent.SpawnReason.NATURAL);
     }
-
     /**
      * removes any non custom mob if there's a custom mob variant
      * and checks with which custom mob to replace with.
@@ -72,9 +70,5 @@ public class SpawnCustomMob implements Listener {
                 e.getEntity().remove();
                 spawnMob(new CustomPigZombie(spawnLocation));
         }
-
-
-
     }
-
 }

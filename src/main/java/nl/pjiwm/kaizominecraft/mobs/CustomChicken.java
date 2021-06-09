@@ -5,7 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 
 public class CustomChicken extends EntityChicken {
-    //        chickens run away from players at all times with higher speed
     public CustomChicken(Location location) {
         super(EntityTypes.CHICKEN, ((CraftWorld)location.getWorld()).getHandle());
         this.setPosition(location.getX(), location.getY(), location.getZ());
