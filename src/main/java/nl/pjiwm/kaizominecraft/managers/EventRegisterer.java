@@ -13,7 +13,7 @@ public class EventRegisterer {
 
 
     public static void registerEvents(PluginManager pm, JavaPlugin plugin) {
-        pm.registerEvents(new SpawnCustomMob(plugin), plugin);
+        pm.registerEvents(new SpawnCustomMob(), plugin);
         pm.registerEvents(new SpawnBuffedMob(), plugin);
         pm.registerEvents(new ProjectileBuff(), plugin);
         pm.registerEvents(new ArrowBuff(), plugin);

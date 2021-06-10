@@ -8,12 +8,6 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpawnCustomMob implements Listener {
-    private NamespacedKey entityKey;
-
-    public SpawnCustomMob(JavaPlugin plugin) {
-        entityKey = new NamespacedKey(plugin, "custom");
-    }
-
 
     /**
      * Every entity that's being spawned gets passed down to the mob manager.
