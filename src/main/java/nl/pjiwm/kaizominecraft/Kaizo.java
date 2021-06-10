@@ -10,9 +10,7 @@ public final class Kaizo extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         PluginManager pm = getServer().getPluginManager();
-
-        EventRegisterer EventRegister = new EventRegisterer(pm, this);
-
+        EventRegisterer.registerEvents(pm, this);
     }
 
     @Override
