@@ -2,6 +2,7 @@ package nl.pjiwm.kaizominecraft.listeners;
 
 import net.minecraft.server.v1_16_R3.Entity;
 import net.minecraft.server.v1_16_R3.WorldServer;
+import nl.pjiwm.kaizominecraft.managers.CustomMobManager;
 import nl.pjiwm.kaizominecraft.mobs.*;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -24,18 +25,7 @@ public class SpawnCustomMob implements Listener {
         entityKey = new NamespacedKey(plugin, "custom");
     }
 
-    /**
-     * Spawns a custom NMS mob into a minecraft world
-     * @param entity the custom mob that will be spawned and replace the original mob
-     */
-    private void spawnMob(Entity entity) {
-        Location location = entity.getBukkitEntity().getLocation();
-        CraftLivingEntity newEntity = (CraftLivingEntity) entity.getBukkitEntity();
-        PersistentDataContainer dataContainer =  newEntity.getPersistentDataContainer();
-        dataContainer.set(entityKey, PersistentDataType.STRING, "custom");
-        WorldServer world = ((CraftWorld) Objects.requireNonNull(location.getWorld())).getHandle();
-        world.addEntity(entity, CreatureSpawnEvent.SpawnReason.NATURAL);
-    }
+
 
     /**
      * removes any non custom mob if there's a custom mob variant
@@ -43,47 +33,7 @@ public class SpawnCustomMob implements Listener {
      */
     @EventHandler
     public void spawnEntity(EntitySpawnEvent e) {
-        PersistentDataContainer entityContainer = e.getEntity().getPersistentDataContainer();
-        Location spawnLocation = e.getEntity().getLocation();
-//        this prevents entity from infinitely being replaced
-        if(entityContainer.has(entityKey, PersistentDataType.STRING)) {
-            return;
-        }
-        switch(e.getEntity().getType()) {
-            case CHICKEN:
-                e.getEntity().remove();
-                spawnMob(new CustomChicken(spawnLocation));
-                System.out.println("kip");
-                break;
-            case SHEEP:
-                e.getEntity().remove();
-                spawnMob(new CustomSheep(spawnLocation));
-                System.out.println("schaap");
-                break;
-            case PIG:
-                e.getEntity().remove();
-                spawnMob(new CustomPig(spawnLocation));
-                break;
-            case COW:
-                e.getEntity().remove();
-                spawnMob(new CustomCow(spawnLocation));
-                break;
-            case IRON_GOLEM:
-                e.getEntity().remove();
-                spawnMob(new CustomIronGolem(spawnLocation));
-                break;
-            case WOLF:
-                e.getEntity().remove();
-                spawnMob(new CustomWolf(spawnLocation));
-                break;
-            case ZOMBIFIED_PIGLIN:
-                e.getEntity().remove();
-                spawnMob(new CustomPigZombie(spawnLocation));
-                break;
-        }
-
-
-
+        CustomMobManager.replaceMob(e.getEntity());
     }
 
 }
