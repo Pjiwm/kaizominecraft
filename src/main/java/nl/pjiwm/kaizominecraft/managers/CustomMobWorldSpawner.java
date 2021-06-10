@@ -1,6 +1,7 @@
 package nl.pjiwm.kaizominecraft.managers;
 
 import org.bukkit.World;
+import org.bukkit.WorldType;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,7 +24,6 @@ public class CustomMobWorldSpawner {
 
         }
     }
-
     /**
      * gets all worlds from a server and does a scan on all entities on all worlds.
      * On every world the replaceMobs method will be executed which replaces the mob with
@@ -33,6 +33,22 @@ public class CustomMobWorldSpawner {
     public static void replaceAllWorlds(JavaPlugin plugin) {
         List<World> allWorlds = plugin.getServer().getWorlds();
         for(World world : allWorlds) {
+            replaceMobs(world);
+        }
+    }
+    /**
+     * gets all worlds from a server and filters them on the world type.
+     * it does a scan on all entities on all worlds.
+     * On every world the replaceMobs method will be executed which replaces the mob with
+     * a custom mob if necessary.
+     * @param plugin - the main class/server plugin required to get all the servers worlds.
+     * @param environment - the type of world it should perform actions on.
+     * options: NORMAL/NETHER/THE_END/CUSTOM
+     */
+    public static void replaceAllWorlds(JavaPlugin plugin, World.Environment environment) {
+        List<World> allWorlds = plugin.getServer().getWorlds();
+        for(World world : allWorlds) {
+            if(world.getEnvironment().equals(environment))
             replaceMobs(world);
         }
     }
