@@ -3,6 +3,7 @@ package nl.pjiwm.kaizominecraft.managers;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
@@ -17,4 +18,10 @@ public class CustomMobWorldSpawner {
         }
     }
 
+    public static void replaceAllWorlds(JavaPlugin plugin) {
+        List<World> allWorlds = plugin.getServer().getWorlds();
+        for(World world : allWorlds) {
+            replaceMobs(world);
+        }
+    }
 }
