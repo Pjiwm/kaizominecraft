@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class CustomMobManager {
     public static NamespacedKey entityKey = new NamespacedKey(Kaizo.getPlugin(Kaizo.class), "custom");
-    
+
     /**
      * removes any non custom mob if there's a custom mob variant
      * and checks with which custom mob to replace with.
