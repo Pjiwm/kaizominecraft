@@ -16,14 +16,18 @@ import java.util.Objects;
 
 public class CustomMobManager {
     public static NamespacedKey entityKey = new NamespacedKey(Kaizo.getPlugin(Kaizo.class), "custom");
-
+    
+    /**
+     * removes any non custom mob if there's a custom mob variant
+     * and checks with which custom mob to replace with.
+     */
     public static void replaceMob(Entity entity) {
         Location spawnLocation = entity.getLocation();
         PersistentDataContainer entityContainer = entity.getPersistentDataContainer();
-        if(entityContainer.has(entityKey, PersistentDataType.STRING)) {
+        if (entityContainer.has(entityKey, PersistentDataType.STRING)) {
             return;
         }
-        switch(entity.getType()) {
+        switch (entity.getType()) {
             case CHICKEN:
                 entity.remove();
                 spawnMob(new CustomChicken(spawnLocation));
@@ -56,11 +60,14 @@ public class CustomMobManager {
                 break;
         }
     }
-
+    /**
+     * Spawns a custom NMS mob into a minecraft world
+     * @param entity the custom mob that will be spawned and replace the original mob
+     */
     private static void spawnMob(net.minecraft.server.v1_16_R3.Entity entity) {
         Location location = entity.getBukkitEntity().getLocation();
         CraftLivingEntity newEntity = (CraftLivingEntity) entity.getBukkitEntity();
-        PersistentDataContainer dataContainer =  newEntity.getPersistentDataContainer();
+        PersistentDataContainer dataContainer = newEntity.getPersistentDataContainer();
         dataContainer.set(entityKey, PersistentDataType.STRING, "custom");
         WorldServer world = ((CraftWorld) Objects.requireNonNull(location.getWorld())).getHandle();
         world.addEntity(entity, CreatureSpawnEvent.SpawnReason.NATURAL);
