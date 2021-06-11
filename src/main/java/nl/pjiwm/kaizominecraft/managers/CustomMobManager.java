@@ -31,12 +31,10 @@ public class CustomMobManager {
             case CHICKEN:
                 entity.remove();
                 spawnMob(new CustomChicken(spawnLocation));
-                System.out.println("kip");
                 break;
             case SHEEP:
                 entity.remove();
                 spawnMob(new CustomSheep(spawnLocation));
-                System.out.println("schaap");
                 break;
             case PIG:
                 entity.remove();

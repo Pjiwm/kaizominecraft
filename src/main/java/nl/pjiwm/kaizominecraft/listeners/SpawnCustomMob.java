@@ -1,11 +1,9 @@
 package nl.pjiwm.kaizominecraft.listeners;
 
 import nl.pjiwm.kaizominecraft.managers.CustomMobManager;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpawnCustomMob implements Listener {
 
