@@ -24,7 +24,6 @@ public class SpawnBuffedMob implements Listener {
         if (entity instanceof Monster) {
             buffMonster(entity);
         }
-
         switch (entity.getType()) {
             case CREEPER:
                 buffCreeper((Creeper) entity);
