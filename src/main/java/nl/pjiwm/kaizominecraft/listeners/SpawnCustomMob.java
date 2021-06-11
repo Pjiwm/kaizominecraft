@@ -51,24 +51,33 @@ public class SpawnCustomMob implements Listener {
             case CHICKEN:
                 e.getEntity().remove();
                 spawnMob(new CustomChicken(spawnLocation));
+                System.out.println("kip");
+                break;
             case SHEEP:
                 e.getEntity().remove();
                 spawnMob(new CustomSheep(spawnLocation));
+                System.out.println("schaap");
+                break;
             case PIG:
                 e.getEntity().remove();
                 spawnMob(new CustomPig(spawnLocation));
+                break;
             case COW:
                 e.getEntity().remove();
                 spawnMob(new CustomCow(spawnLocation));
+                break;
             case IRON_GOLEM:
                 e.getEntity().remove();
                 spawnMob(new CustomIronGolem(spawnLocation));
+                break;
             case WOLF:
                 e.getEntity().remove();
                 spawnMob(new CustomWolf(spawnLocation));
+                break;
             case ZOMBIFIED_PIGLIN:
                 e.getEntity().remove();
                 spawnMob(new CustomPigZombie(spawnLocation));
+                break;
         }
     }
 }
