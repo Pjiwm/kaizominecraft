@@ -12,7 +12,7 @@ public class SpawnCustomMob implements Listener {
      * Every entity that's being spawned gets passed down to the mob manager.
      * This way it can be checked if it can be replaced with a custom mob.
      * If the mob however is not from a custom world it will not be replaced.
-     * 
+     *
      * @param e - the event upon a new entity/mob spawns in the world.
      */
     @EventHandler

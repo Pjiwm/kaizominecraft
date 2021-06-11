@@ -21,7 +21,6 @@ public class CustomMobWorldSpawner {
             if (!entity.getPersistentDataContainer().has(CustomMobManager.entityKey, PersistentDataType.STRING)) {
                 CustomMobManager.replaceMob(entity);
             }
-
         }
     }
     /**

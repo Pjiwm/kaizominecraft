@@ -104,7 +104,6 @@ public class CustomWorldManager {
         worldCreator.generateStructures(true);
         worldCreator.generatorSettings(JSON);
         overWorld = worldCreator.createWorld();
-
     }
     /**
      *

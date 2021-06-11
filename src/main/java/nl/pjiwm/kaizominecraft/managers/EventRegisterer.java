@@ -11,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class EventRegisterer {
 
-
     public static void registerEvents(PluginManager pm, JavaPlugin plugin) {
         pm.registerEvents(new SpawnCustomMob(), plugin);
         pm.registerEvents(new SpawnBuffedMob(), plugin);
