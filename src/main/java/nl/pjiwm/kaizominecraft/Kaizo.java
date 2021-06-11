@@ -15,7 +15,6 @@ public final class Kaizo extends JavaPlugin {
         EventRegisterer.registerEvents(pm, this);
             CustomWorldManager.geneRateWorlds();
             CustomMobWorldSpawner.replaceMobs(getServer().getWorld(CustomWorldManager.OVERWORLD_NAME));
-
     }
 
     @Override

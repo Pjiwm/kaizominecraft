@@ -106,4 +106,12 @@ public class CustomWorldManager {
         overWorld = worldCreator.createWorld();
 
     }
+    /**
+     *
+     * @param worldName - the name of the world
+     * @return returns a boolean value if the world is custom or not.
+     */
+    public static boolean isCustomWorld(String worldName) {
+        return worldName.equals(OVERWORLD_NAME) || worldName.equals(NEHTER_NAME) || worldName.equals(END_NAME);
+    }
 }
