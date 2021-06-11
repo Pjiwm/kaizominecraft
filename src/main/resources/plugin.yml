@@ -5,3 +5,8 @@ api-version: 1.16
 authors: [ Pjiwm ]
 description: Kaizo Minecraft is a spigot plugin intended to make minecraft ridiculously hard and unfair
 website: https://github.com/Pjiwm
+commands:
+  kaizo:
+    description: Your description
+    usage: /<command>
+    permission: kaizo
