@@ -97,7 +97,7 @@ public class CustomWorldManager {
     /**
      * generates all custom worlds that are required.
      */
-    public void geneRateWorlds() {
+    public static void geneRateWorlds() {
 //        overworld
         WorldCreator worldCreator = new WorldCreator(OVERWORLD_NAME);
         worldCreator.type(WorldType.NORMAL);
