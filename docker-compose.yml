@@ -1,0 +1,12 @@
+version: "3.9"
+services: 
+    openjdk:
+        container_name: mc_dev
+        stdin_open: true
+        tty: true
+        build: .
+        command: java -Xmx2048m -jar spigot.jar -nogui
+        volumes: 
+            - .:/usr/src/app
+        ports: 
+            - 25565:25565
