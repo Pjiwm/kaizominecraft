@@ -6,7 +6,7 @@ import org.bukkit.WorldType;
 
 public class CustomWorldManager {
     public final static String OVERWORLD_NAME = "kaizo";
-    public final static String NEHTER_NAME = "kaizo_nether";
+    public final static String NETHER_NAME = "kaizo_nether";
     public final static String END_NAME = "kaizo_end";
     public static World overWorld;
 //    THIS IS TEMPORARY
@@ -111,6 +111,6 @@ public class CustomWorldManager {
      * @return returns a boolean value if the world is custom or not.
      */
     public static boolean isCustomWorld(String worldName) {
-        return worldName.equals(OVERWORLD_NAME) || worldName.equals(NEHTER_NAME) || worldName.equals(END_NAME);
+        return worldName.equals(OVERWORLD_NAME) || worldName.equals(NETHER_NAME) || worldName.equals(END_NAME);
     }
 }
