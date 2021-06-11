@@ -12,6 +12,5 @@ public class CustomWolf extends EntityWolf {
         super(EntityTypes.WOLF, ((CraftWorld)location.getWorld()).getHandle());
         this.setPosition(location.getX(), location.getY(), location.getZ());
         this.targetSelector.a(0, new PathfinderGoalNearestAttackableTarget<>(this, EntityPlayer.class, true));
-
     }
 }
