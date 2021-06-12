@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-//TODO - fix bug player not teleporting
+
 public class PlayerManager {
     private JavaPlugin plugin;
     private File folder;
