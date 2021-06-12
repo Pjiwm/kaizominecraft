@@ -106,8 +106,14 @@ public class PlayerManager {
      * @param worldType the type of world the player is in, whether it's custom or not.
      */
     public void savePlayer(Player p, WorldTypes worldType) {
+        Location location;
+        if(worldType.equals(WorldTypes.NORMAL)) {
+            location = p.getLocation();
+        } else {
+            location = plugin.getServer().getWorld(CustomWorldManager.OVERWORLD_NAME).getSpawnLocation();
+        }
         YamlConfiguration playerConfig = new YamlConfiguration();
-        playerConfig.set("location", LocationUtils.locToConfigSection(p.getLocation()));
+        playerConfig.set("location", LocationUtils.locToConfigSection(location));
         playerConfig.set("inventory", p.getInventory().getContents());
         playerConfig.set("health", p.getHealth());
         playerConfig.set("hunger", p.getFoodLevel());

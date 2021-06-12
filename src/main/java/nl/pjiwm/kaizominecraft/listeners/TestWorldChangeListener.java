@@ -23,13 +23,11 @@ public class TestWorldChangeListener implements Listener {
         if(e.getNewGameMode().equals(GameMode.ADVENTURE)) {
             playerManager.savePlayer(e.getPlayer(), WorldTypes.NORMAL);
             playerManager.restorePlayer(e.getPlayer(), WorldTypes.CUSTOM);
-//            e.getPlayer().teleport(server.getWorld(CustomWorldManager.OVERWORLD_NAME).getSpawnLocation());
             e.getPlayer().sendMessage("swapped to world" + CustomWorldManager.OVERWORLD_NAME);
         }
         if(e.getNewGameMode().equals(GameMode.SURVIVAL)) {
             playerManager.savePlayer(e.getPlayer(), WorldTypes.CUSTOM);
             playerManager.restorePlayer(e.getPlayer(), WorldTypes.NORMAL);
-//            e.getPlayer().teleport(server.getWorlds().get(0).getSpawnLocation());
             e.getPlayer().sendMessage("swapped to world" + server.getWorlds().get(0).getName());
         }
     }
