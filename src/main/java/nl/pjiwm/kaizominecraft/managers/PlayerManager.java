@@ -110,6 +110,7 @@ public class PlayerManager {
         playerConfig.set("health", p.getHealth());
         playerConfig.set("hunger", p.getFoodLevel());
         playerConfig.set("xp", p.getTotalExperience());
+        save(p, playerConfig, worldType);
     }
 
     /**
@@ -131,7 +132,6 @@ public class PlayerManager {
         } else {
             playerConfig = getPlayerConfig(p, WorldTypes.NORMAL);
         }
-        savePlayer(p, worldType);
 
         if (playerConfig == null)
             return;
