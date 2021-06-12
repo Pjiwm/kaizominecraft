@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-
+//TODO - fix bug player not teleporting
 public class PlayerManager {
     private JavaPlugin plugin;
     private File folder;
@@ -51,8 +51,10 @@ public class PlayerManager {
      */
     private FileConfiguration getPlayerConfig(Player p, WorldTypes worldType) {
         File playerFile = getPlayerFile(p, worldType);
-        if (!playerFile.exists())
+        if (!playerFile.exists()) {
+            System.out.println("Playerconfig for" + worldType + " no exisot");
             return null;
+        }
 
         YamlConfiguration playerConfig = new YamlConfiguration();
         try {
@@ -120,21 +122,18 @@ public class PlayerManager {
      * And it check if the player has something saved otherwise it does nothing
      *
      * @param p The player to restore the location, inventory and armor from
-     * @param p the world type the player is in so we can store a new variant of the other world type and remove current one.
+     * @param worldType the type of world you want to restore the players data.
      */
     public void restorePlayer(Player p, WorldTypes worldType ) {
         if (Bukkit.getPlayerExact(p.getName()) == null)
             return;
         FileConfiguration playerConfig;
 
-        if(worldType.equals(WorldTypes.NORMAL)) {
-            playerConfig = getPlayerConfig(p, WorldTypes.CUSTOM);
-        } else {
-            playerConfig = getPlayerConfig(p, WorldTypes.NORMAL);
-        }
+        playerConfig = getPlayerConfig(p, worldType);
 
-        if (playerConfig == null)
+        if (playerConfig == null) {
             return;
+        }
 
         Location location = LocationUtils.configSectionToLocation(playerConfig.getConfigurationSection("location"));
         List<ItemStack> contentList = (List<ItemStack>) playerConfig.get("inventory");
