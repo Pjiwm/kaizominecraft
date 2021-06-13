@@ -8,7 +8,40 @@ public class CustomWorldManager {
     public final static String OVERWORLD_NAME = "kaizo";
     public final static String NETHER_NAME = "kaizo_nether";
     public final static String END_NAME = "kaizo_end";
-//    THIS IS TEMPORARY
+
+    /**
+     * generates all custom worlds that are required.
+     */
+    public static void geneRateWorlds() {
+        World world;
+        WorldCreator worldCreator;
+//        overworld
+        worldCreator = new WorldCreator(OVERWORLD_NAME);
+        worldCreator.type(WorldType.NORMAL);
+        worldCreator.generateStructures(true);
+        worldCreator.generatorSettings(JSON);
+        world = worldCreator.createWorld();
+//         nether
+        worldCreator = new WorldCreator(NETHER_NAME);
+        worldCreator.environment(World.Environment.NETHER);
+        worldCreator.generateStructures(true);
+        world = worldCreator.createWorld();
+//        end
+        worldCreator = new WorldCreator(END_NAME);
+        worldCreator.environment(World.Environment.THE_END);
+        worldCreator.generateStructures(true);
+        world = worldCreator.createWorld();
+    }
+    /**
+     *
+     * @param worldName - the name of the world
+     * @return returns a boolean value if the world is custom or not.
+     */
+    public static boolean isCustomWorld(String worldName) {
+        return worldName.equals(OVERWORLD_NAME) || worldName.equals(NETHER_NAME) || worldName.equals(END_NAME);
+    }
+
+    //    THIS IS TEMPORARY
     public final static String JSON = "{\n" +
             "\t\"useCaves\": true,\n" +
             "\t\"useStrongholds\": true,\n" +
@@ -93,35 +126,4 @@ public class CustomWorldManager {
             "\t\"lapisSpread\": 16\n" +
             "}";
 
-    /**
-     * generates all custom worlds that are required.
-     */
-    public static void geneRateWorlds() {
-        World world;
-        WorldCreator worldCreator;
-//        overworld
-        worldCreator = new WorldCreator(OVERWORLD_NAME);
-        worldCreator.type(WorldType.NORMAL);
-        worldCreator.generateStructures(true);
-        worldCreator.generatorSettings(JSON);
-        world = worldCreator.createWorld();
-//         nether
-        worldCreator = new WorldCreator(NETHER_NAME);
-        worldCreator.environment(World.Environment.NETHER);
-        worldCreator.generateStructures(true);
-        world = worldCreator.createWorld();
-//        end
-        worldCreator = new WorldCreator(END_NAME);
-        worldCreator.environment(World.Environment.THE_END);
-        worldCreator.generateStructures(true);
-        world = worldCreator.createWorld();
-    }
-    /**
-     *
-     * @param worldName - the name of the world
-     * @return returns a boolean value if the world is custom or not.
-     */
-    public static boolean isCustomWorld(String worldName) {
-        return worldName.equals(OVERWORLD_NAME) || worldName.equals(NETHER_NAME) || worldName.equals(END_NAME);
-    }
 }
