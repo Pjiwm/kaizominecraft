@@ -14,5 +14,6 @@ public class EventRegisterer {
         pm.registerEvents(new ProjectileBuff(), plugin);
         pm.registerEvents(new ArrowBuff(), plugin);
         pm.registerEvents(new TestWorldChangeListener(plugin), plugin);
+        pm.registerEvents(new CustomPortalListener(plugin), plugin);
     }
 }
