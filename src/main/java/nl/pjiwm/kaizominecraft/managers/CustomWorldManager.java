@@ -98,12 +98,17 @@ public class CustomWorldManager {
      */
     public static void geneRateWorlds() {
         World world;
+        WorldCreator worldCreator;
 //        overworld
-
-        WorldCreator worldCreator = new WorldCreator(OVERWORLD_NAME);
+        worldCreator = new WorldCreator(OVERWORLD_NAME);
         worldCreator.type(WorldType.NORMAL);
         worldCreator.generateStructures(true);
         worldCreator.generatorSettings(JSON);
+        world = worldCreator.createWorld();
+//         nether
+        worldCreator = new WorldCreator(NETHER_NAME);
+        worldCreator.environment(World.Environment.NETHER);
+        worldCreator.generateStructures(true);
         world = worldCreator.createWorld();
     }
     /**
