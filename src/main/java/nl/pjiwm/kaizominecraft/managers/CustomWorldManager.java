@@ -30,6 +30,7 @@ public class CustomWorldManager {
         worldCreator = new WorldCreator(END_NAME);
         worldCreator.environment(World.Environment.THE_END);
         worldCreator.generateStructures(true);
+        worldCreator.generatorSettings(netherJSON);
         world = worldCreator.createWorld();
     }
     /**
@@ -125,5 +126,6 @@ public class CustomWorldManager {
             "\t\"lapisCenterHeight\": 16,\n" +
             "\t\"lapisSpread\": 16\n" +
             "}";
+    private final static String netherJSON = "\"settings\": \"minecraft:floating_islands\"";
 
 }
