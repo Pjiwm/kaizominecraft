@@ -110,6 +110,11 @@ public class CustomWorldManager {
         worldCreator.environment(World.Environment.NETHER);
         worldCreator.generateStructures(true);
         world = worldCreator.createWorld();
+//        end
+        worldCreator = new WorldCreator(END_NAME);
+        worldCreator.environment(World.Environment.THE_END);
+        worldCreator.generateStructures(true);
+        world = worldCreator.createWorld();
     }
     /**
      *
