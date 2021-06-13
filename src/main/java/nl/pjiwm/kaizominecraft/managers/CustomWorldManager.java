@@ -8,7 +8,6 @@ public class CustomWorldManager {
     public final static String OVERWORLD_NAME = "kaizo";
     public final static String NETHER_NAME = "kaizo_nether";
     public final static String END_NAME = "kaizo_end";
-    public static World overWorld;
 //    THIS IS TEMPORARY
     public final static String JSON = "{\n" +
             "\t\"useCaves\": true,\n" +
@@ -98,12 +97,14 @@ public class CustomWorldManager {
      * generates all custom worlds that are required.
      */
     public static void geneRateWorlds() {
+        World world;
 //        overworld
+
         WorldCreator worldCreator = new WorldCreator(OVERWORLD_NAME);
         worldCreator.type(WorldType.NORMAL);
         worldCreator.generateStructures(true);
         worldCreator.generatorSettings(JSON);
-        overWorld = worldCreator.createWorld();
+        world = worldCreator.createWorld();
     }
     /**
      *
