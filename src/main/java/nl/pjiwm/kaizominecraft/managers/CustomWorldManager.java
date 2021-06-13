@@ -25,12 +25,12 @@ public class CustomWorldManager {
         worldCreator = new WorldCreator(NETHER_NAME);
         worldCreator.environment(World.Environment.NETHER);
         worldCreator.generateStructures(true);
+        worldCreator.generatorSettings(netherJSON);
         world = worldCreator.createWorld();
 //        end
         worldCreator = new WorldCreator(END_NAME);
         worldCreator.environment(World.Environment.THE_END);
         worldCreator.generateStructures(true);
-        worldCreator.generatorSettings(netherJSON);
         world = worldCreator.createWorld();
     }
     /**
