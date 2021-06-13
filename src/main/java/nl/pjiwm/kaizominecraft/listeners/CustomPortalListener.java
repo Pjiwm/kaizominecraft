@@ -68,4 +68,26 @@ public class CustomPortalListener implements Listener {
         }
         return world;
     }
+
+    private World getNether() {
+        World world;
+        try {
+            world = CustomWorldManager.nether;
+        } catch (NullPointerException e) {
+            System.out.println("Custom nether could not be found.");
+            world = server.getWorlds().get(1);
+        }
+        return world;
+    }
+
+    private World getEnd() {
+        World world;
+        try {
+            world = CustomWorldManager.end;
+        } catch (NullPointerException e) {
+            System.out.println("Custom end could not be found.");
+            world = server.getWorlds().get(2);
+        }
+        return world;
+    }
 }
