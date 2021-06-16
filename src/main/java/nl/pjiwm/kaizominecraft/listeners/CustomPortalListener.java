@@ -64,7 +64,8 @@ public class CustomPortalListener implements Listener {
     @EventHandler
     public void onEndLeave(PlayerChangedWorldEvent e) {
         if(e.getFrom() == getEnd()) {
-            if(e.getPlayer().getBedSpawnLocation().getWorld() == getWorld()) {
+            World world = e.getPlayer().getBedSpawnLocation().getWorld();
+            if( world == getWorld() || world == getNether()) {
                 return;
             }
             e.getPlayer().teleport(getWorld().getSpawnLocation());
