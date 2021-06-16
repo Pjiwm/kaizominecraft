@@ -19,26 +19,22 @@ public class CustomPortalListener implements Listener {
     public CustomPortalListener(JavaPlugin plugin) {
         this.server = plugin.getServer();
     }
-//  TODO check what works on this function
-
-// seems like travelAgents is deprecated and the whole agent part isn't necessary anymore
-// code is from spigot forum: https://www.spigotmc.org/threads/create-world-with-nether-and-end.399952/
-// originally from Multiverse might be able to find their current mehod for this event if it doesn't work.
     /**
-     *
+     * checks if the player is changing dimensions.
+     * it will check if it's a custom world and link the portal to the other dimension which is also custom.
+     * this way we can prevent players from entering portals in custom worlds and ending up in normal worlds.
      * @param event - the event of a player entering a portal
      */
     @EventHandler
     public void onPortal(PlayerPortalEvent event) {
+        System.out.println("debug - event called");
         Player player = event.getPlayer();
-//        if it's not a custom world nothing special should be done.
+//      if it's not a custom world nothing special should be done.
         if(!CustomWorldManager.isCustomWorld(event.getPlayer().getWorld().getName())) {
             return;
         }
 
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
-//            event.useTravelAgent(true);
-//            event.getPortalTravelAgent().setCanCreatePortal(true);
             event.setCanCreatePortal(true);
             Location location;
             if (player.getWorld() == getWorld()) {
@@ -46,35 +42,23 @@ public class CustomPortalListener implements Listener {
             } else {
                 location = new Location(getWorld(), event.getFrom().getBlockX() * 8, event.getFrom().getBlockY(), event.getFrom().getBlockZ() * 8);
             }
-//            event.setTo(event.getPortalTravelAgent().findOrCreate(location));
+
             event.setTo(location);
         }
-
+//      unlike nether portals when a player goes from the end back to the overworld this event is not called for
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
             if (player.getWorld() == getWorld()) {
-                Location loc = new Location(getEnd(), 100, 50, 0); // This is the vanilla location for obsidian platform.
+                // This is the vanilla location for obsidian platform.
+                Location loc = new Location(getEnd(), 100, 50, 0);
                 event.setTo(loc);
-                Block block = loc.getBlock();
-                for (int x = block.getX() - 2; x <= block.getX() + 2; x++) {
-                    for (int z = block.getZ() - 2; z <= block.getZ() + 2; z++) {
-                        Block platformBlock = loc.getWorld().getBlockAt(x, block.getY() - 1, z);
-                        if (platformBlock.getType() != Material.OBSIDIAN) {
-                            platformBlock.setType(Material.OBSIDIAN);
-                        }
-                        for (int yMod = 1; yMod <= 3; yMod++) {
-                            Block b = platformBlock.getRelative(BlockFace.UP, yMod);
-                            if (b.getType() != Material.AIR) {
-                                b.setType(Material.AIR);
-                            }
-                        }
-                    }
-                }
-            } else if (player.getWorld() == getEnd()) {
-                event.setTo(getWorld().getSpawnLocation());
+                setObsidianPlatform(loc);
             }
         }
     }
-
+    /**
+     * grabs the custom end dimension and checks if it exists.
+     * @return the custom over world dimension or if its not found the default over world.
+     */
     private World getWorld() {
         World world;
         try {
@@ -85,7 +69,10 @@ public class CustomPortalListener implements Listener {
         }
         return world;
     }
-
+    /**
+     * grabs the custom end dimension and checks if it exists.
+     * @return the custom nether dimension or if its not found the default nether.
+     */
     private World getNether() {
         World world;
         try {
@@ -97,6 +84,10 @@ public class CustomPortalListener implements Listener {
         return world;
     }
 
+    /**
+     * grabs the custom end dimension and checks if it exists.
+     * @return the custom end dimension or if its not found the default end.
+     */
     private World getEnd() {
         World world;
         try {
@@ -106,5 +97,29 @@ public class CustomPortalListener implements Listener {
             world = server.getWorlds().get(2);
         }
         return world;
+    }
+
+    /**
+     * builds an obsidian platform the same way it does when a player enters the end in vanilla minecraft.
+     * this mimicked behavior can be used to create obsidian platforms in other dimensions.
+     * @param loc - the starting location in which the platform should be build on.
+     */
+    private void setObsidianPlatform(Location loc) {
+        Block block = loc.getBlock();
+        for (int x = block.getX() - 2; x <= block.getX() + 2; x++) {
+            for (int z = block.getZ() - 2; z <= block.getZ() + 2; z++) {
+                Block platformBlock = loc.getWorld().getBlockAt(x, block.getY() - 1, z);
+                if (platformBlock.getType() != Material.OBSIDIAN) {
+                    platformBlock.setType(Material.OBSIDIAN);
+                }
+                for (int yMod = 1; yMod <= 3; yMod++) {
+                    Block b = platformBlock.getRelative(BlockFace.UP, yMod);
+                    if (b.getType() != Material.AIR) {
+                        b.setType(Material.AIR);
+                    }
+                }
+            }
+        }
+
     }
 }

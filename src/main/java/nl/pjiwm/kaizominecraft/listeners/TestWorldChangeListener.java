@@ -26,6 +26,7 @@ public class TestWorldChangeListener implements Listener {
             e.getPlayer().sendMessage("swapped to world" + CustomWorldManager.OVERWORLD_NAME);
 //            this should be implemented in some way as a command later on.
             e.getPlayer().setBedSpawnLocation(e.getPlayer().getLocation());
+
         }
         if(e.getNewGameMode().equals(GameMode.SURVIVAL)) {
             playerManager.savePlayer(e.getPlayer(), WorldTypes.CUSTOM);
