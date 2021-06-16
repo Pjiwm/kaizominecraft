@@ -10,6 +10,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,38 +24,43 @@ public class CustomPortalListener implements Listener {
      * checks if the player is changing dimensions.
      * it will check if it's a custom world and link the portal to the other dimension which is also custom.
      * this way we can prevent players from entering portals in custom worlds and ending up in normal worlds.
-     * @param event - the event of a player entering a portal
+     * @param e - the event of a player entering a portal
      */
     @EventHandler
-    public void onPortal(PlayerPortalEvent event) {
-        System.out.println("debug - event called");
-        Player player = event.getPlayer();
+    public void onPortal(PlayerPortalEvent e) {
+        Player p = e.getPlayer();
 //      if it's not a custom world nothing special should be done.
-        if(!CustomWorldManager.isCustomWorld(event.getPlayer().getWorld().getName())) {
+        if(!CustomWorldManager.isCustomWorld(e.getPlayer().getWorld().getName())) {
             return;
         }
 
-        if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
-            event.setCanCreatePortal(true);
+        if (e.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
+            e.setCanCreatePortal(true);
             Location location;
-            if (player.getWorld() == getWorld()) {
-                location = new Location(getNether(), event.getFrom().getBlockX() / 8, event.getFrom().getBlockY(), event.getFrom().getBlockZ() / 8);
+            if (p.getWorld() == getWorld()) {
+                location = new Location(getNether(), e.getFrom().getBlockX() / 8, e.getFrom().getBlockY(), e.getFrom().getBlockZ() / 8);
             } else {
-                location = new Location(getWorld(), event.getFrom().getBlockX() * 8, event.getFrom().getBlockY(), event.getFrom().getBlockZ() * 8);
+                location = new Location(getWorld(), e.getFrom().getBlockX() * 8, e.getFrom().getBlockY(), e.getFrom().getBlockZ() * 8);
             }
 
-            event.setTo(location);
+            e.setTo(location);
         }
 //      unlike nether portals when a player goes from the end back to the overworld this event is not called for
-        if (event.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
-            if (player.getWorld() == getWorld()) {
+        if (e.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
+            if (p.getWorld() == getWorld()) {
                 // This is the vanilla location for obsidian platform.
-                Location loc = new Location(getEnd(), 100, 50, 0);
-                event.setTo(loc);
-                setObsidianPlatform(loc);
+                Location location = new Location(getEnd(), 100, 50, 0);
+                e.setTo(location);
+                setObsidianPlatform(location);
             }
         }
     }
+
+    @EventHandler
+    public void onEndLeave(PlayerChangedWorldEvent event) {
+        
+    }
+
     /**
      * grabs the custom end dimension and checks if it exists.
      * @return the custom over world dimension or if its not found the default over world.
@@ -102,13 +108,13 @@ public class CustomPortalListener implements Listener {
     /**
      * builds an obsidian platform the same way it does when a player enters the end in vanilla minecraft.
      * this mimicked behavior can be used to create obsidian platforms in other dimensions.
-     * @param loc - the starting location in which the platform should be build on.
+     * @param location - the starting location in which the platform should be build on.
      */
-    private void setObsidianPlatform(Location loc) {
-        Block block = loc.getBlock();
+    private void setObsidianPlatform(Location location) {
+        Block block = location.getBlock();
         for (int x = block.getX() - 2; x <= block.getX() + 2; x++) {
             for (int z = block.getZ() - 2; z <= block.getZ() + 2; z++) {
-                Block platformBlock = loc.getWorld().getBlockAt(x, block.getY() - 1, z);
+                Block platformBlock = location.getWorld().getBlockAt(x, block.getY() - 1, z);
                 if (platformBlock.getType() != Material.OBSIDIAN) {
                     platformBlock.setType(Material.OBSIDIAN);
                 }
