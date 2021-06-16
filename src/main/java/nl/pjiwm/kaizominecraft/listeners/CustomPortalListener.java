@@ -56,9 +56,19 @@ public class CustomPortalListener implements Listener {
         }
     }
 
+    /**
+     * makes sure that when the player leaves the end from a custom end they will return back to custom over world.
+     * this method is needed because onPortal doesn't get triggered when a player goes from the end to over world.
+     * @param e - the event of a player after changing worlds.
+     */
     @EventHandler
-    public void onEndLeave(PlayerChangedWorldEvent event) {
-        
+    public void onEndLeave(PlayerChangedWorldEvent e) {
+        if(e.getFrom() == getEnd()) {
+            if(e.getPlayer().getBedSpawnLocation().getWorld() == getWorld()) {
+                return;
+            }
+            e.getPlayer().teleport(getWorld().getSpawnLocation());
+        }
     }
 
     /**
