@@ -31,6 +31,10 @@ public class CustomPortalListener implements Listener {
     @EventHandler
     public void onPortal(PlayerPortalEvent event) {
         Player player = event.getPlayer();
+//        if it's not a custom world nothing special should be done.
+        if(!CustomWorldManager.isCustomWorld(event.getPlayer().getWorld().getName())) {
+            return;
+        }
 
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
 //            event.useTravelAgent(true);
