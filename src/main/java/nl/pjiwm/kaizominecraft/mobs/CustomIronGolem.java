@@ -8,7 +8,6 @@ import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 
 public class CustomIronGolem extends EntityIronGolem {
-
     public CustomIronGolem(Location location) {
         super(EntityTypes.IRON_GOLEM, ((CraftWorld) location.getWorld()).getHandle());
         this.setPosition(location.getX(), location.getY(), location.getZ());

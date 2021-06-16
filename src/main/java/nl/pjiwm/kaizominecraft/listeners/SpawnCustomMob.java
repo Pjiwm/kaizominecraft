@@ -21,5 +21,5 @@ public class SpawnCustomMob implements Listener {
             CustomMobManager.replaceMob(e.getEntity());
         }
     }
-
 }
+
