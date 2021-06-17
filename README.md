@@ -28,7 +28,21 @@ We hope to give these players a new, fun and sometimes more frustrating experien
 With kaizo minecraft it’s possible to play the game you know, but with more of a challange.
 
 # Features
-TODO: show screenshots and describe features
+kaizo minecraft mostly changes the bahavior of mobs.
+Passive mobs such as pigs and sheeps will run away from the player at all times at a higher speed.
+Some neutral mobs and all hostile mobs will attack the player with stronger abilities such as: 
+speed, strength, tipped arrows, bigger explosions, weapon enchants.
+The mob behavior of some mobs have been changed as well.
+
+![creeper](https://i.imgur.com/q9TiY1W.png)
+
+Creepers for example will have higher explosions and have a higher change of being charged.
+Creepers can ignite themselves at random distances from the player and they can have random explosion powers.
+Every creeper is a little different hence the player has to be more careful when approaching this mob.
+
+![skeleton](https://i.imgur.com/lQ1wmjF.png)
+Skeletons have unique tipped arrows which makes them more annoying to deal with.
+The potion effect that only occurs when eating a puffer fish nausea  is used in this case as well.
 
 # Installation
 ### requirements
