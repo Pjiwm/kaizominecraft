@@ -30,7 +30,27 @@ With kaizo minecraft it’s possible to play the game you know, but with more of
 # Features
 TODO: show screenshots and describe features
 
-# Installationa
+# Installation
+### requirements
+[maven](https://maven.apache.org/download.cgi)
+
+### Clone project
 ```
-TODO: installation instructions
+git clone https://github.com/Pjiwm/kaizominecraft.git
 ```
+### Build jar file
+open kaizominecraft directory, open a terminal in the folder and execute:
+```
+mvn install
+```
+### Place plugin in server
+copy jar file from:
+`kaizominecraft > target > kaizominecraft.jar`
+go to your server folder and place jar file in `plugins`
+
+### turn on plugin on server
+start up server or reload server:
+```
+rl confirm
+```
+
