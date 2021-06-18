@@ -51,11 +51,10 @@ public class SpawnBuffedMob implements Listener {
      */
     private void buffMonster(Entity entity) {
         Random random = new Random();
-        int amplifier = random.nextInt(3) + 1;
         int duration = 1000000;
         Collection<PotionEffect> effects = new ArrayList<>();
-        effects.add(new PotionEffect(PotionEffectType.SPEED, duration, amplifier, false, false));
-        effects.add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, duration, amplifier, false, false));
+        effects.add(new PotionEffect(PotionEffectType.SPEED, duration, random.nextInt(3) + 1, false, false));
+        effects.add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, duration, random.nextInt(3) + 1, false, false));
 
         Monster monster = (Monster) entity;
         monster.addPotionEffects(effects);
