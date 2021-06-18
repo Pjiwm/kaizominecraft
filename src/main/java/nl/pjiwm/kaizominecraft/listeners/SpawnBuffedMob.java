@@ -1,9 +1,12 @@
 package nl.pjiwm.kaizominecraft.listeners;
 
+import nl.pjiwm.kaizominecraft.Kaizo;
 import nl.pjiwm.kaizominecraft.managers.CustomWorldManager;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -11,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -111,5 +115,27 @@ public class SpawnBuffedMob implements Listener {
         ((LeatherArmorMeta) stack.getItemMeta()).setColor(Color.fromRGB(102, 179, 255));
         stack.addEnchantment(Enchantment.FROST_WALKER, 1);
         stray.getEquipment().setBoots(stack);
+    }
+
+    /**
+     * gives mobs a glowing effect and makes their attributes even stronger.
+     * In addition a named space key will be added to this mob with the  string "super"
+     * @param mob the mob that will be buffed
+     */
+    private void superBuff(Mob mob) {
+        NamespacedKey specialKey = new NamespacedKey(Kaizo.getPlugin(Kaizo.class), "super");
+        mob.getPersistentDataContainer().set(specialKey, PersistentDataType.STRING, "super");
+
+        AttributeInstance health = mob.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        health.setBaseValue(health.getDefaultValue() * 10);
+
+        Collection<PotionEffect> effects = new ArrayList<>();
+        int duration = 1000000;
+        effects.add(new PotionEffect(PotionEffectType.SPEED, duration, 4, false, false));
+        effects.add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, duration, 4 + 1, false, false));
+        effects.add(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, duration, 1, false, false));
+        effects.add(new PotionEffect(PotionEffectType.GLOWING, duration, 2, false, false));
+        effects.add(new PotionEffect(PotionEffectType.JUMP, duration, 7, false, false));
+        mob.addPotionEffects(effects);
     }
 }
