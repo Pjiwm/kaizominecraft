@@ -46,8 +46,10 @@ public class SpawnBuffedMob implements Listener {
             case STRAY:
                 buffStray((Stray) entity);
                 break;
+            case SLIME:
+                buffSlime((Slime) entity);
         }
-        int randInt = new Random().nextInt(100);
+        int randInt = new Random().nextInt(150);
         if(randInt == 0 && entity instanceof Mob) {
             superBuff((Mob) entity);
         }
@@ -119,6 +121,14 @@ public class SpawnBuffedMob implements Listener {
         ((LeatherArmorMeta) stack.getItemMeta()).setColor(Color.fromRGB(102, 179, 255));
         stack.addEnchantment(Enchantment.FROST_WALKER, 1);
         stray.getEquipment().setBoots(stack);
+    }
+    /**
+     * slime gets a buff by getting a custom size
+     * @param slime - spawned slime that will be given new attributes.
+     */
+    private void buffSlime(Slime slime) {
+        int randSize = new Random().nextInt(21);
+        slime.setSize(randSize);
     }
 
     /**
