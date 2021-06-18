@@ -47,6 +47,10 @@ public class SpawnBuffedMob implements Listener {
                 buffStray((Stray) entity);
                 break;
         }
+        int randInt = new Random().nextInt(100);
+        if(randInt == 0 && entity instanceof Mob) {
+            superBuff((Mob) entity);
+        }
     }
 
     /**
