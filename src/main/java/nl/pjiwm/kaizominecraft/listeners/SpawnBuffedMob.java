@@ -16,6 +16,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
 public class SpawnBuffedMob implements Listener {
 
@@ -49,19 +50,37 @@ public class SpawnBuffedMob implements Listener {
      * @param entity - an entity monster that will be given generic buffs.
      */
     private void buffMonster(Entity entity) {
-        int duration = 100000;
+        Random random = new Random();
+        int amplifier = random.nextInt(3) + 1;
+        int duration = 1000000;
         Collection<PotionEffect> effects = new ArrayList<>();
-        effects.add(new PotionEffect(PotionEffectType.SPEED, duration, 2, false, false));
-        effects.add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, duration, 1, false, false));
+        effects.add(new PotionEffect(PotionEffectType.SPEED, duration, amplifier, false, false));
+        effects.add(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, duration, amplifier, false, false));
 
         Monster monster = (Monster) entity;
         monster.addPotionEffects(effects);
     }
 
+    /**
+     * Creepers get unique ignite radius's, explosion power and odds of being a charged creeper.
+     * @param creeper - spawned in creeper that will be given different attributes
+     */
     private void buffCreeper(Creeper creeper) {
-        creeper.setPowered(true);
-        creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(30);
-        creeper.setExplosionRadius(20);
+        Random random = new Random();
+        int randPowered = random.nextInt(4);
+//        charged creeper
+        if(randPowered > 2) {
+            creeper.setPowered(true);
+        }
+//        random fuse ticks creeper
+        int randFuse = 5 + random.nextInt(26);
+         creeper.setMaxFuseTicks(randFuse);
+//        random health
+        int randHealth = 25 + random.nextInt(11);
+        creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(randHealth);
+//        explosion radius
+        int randExplosion = 8 + random.nextInt(13);
+        creeper.setExplosionRadius(randExplosion);
     }
 
     /**
