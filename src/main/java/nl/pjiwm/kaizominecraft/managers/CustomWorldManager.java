@@ -15,7 +15,7 @@ public class CustomWorldManager {
     /**
      * generates all custom worlds that are required.
      */
-    public static void geneRateWorlds() {
+    public static void generateWorlds() {
         WorldCreator worldCreator;
 //        overworld
         worldCreator = new WorldCreator(OVERWORLD_NAME);
