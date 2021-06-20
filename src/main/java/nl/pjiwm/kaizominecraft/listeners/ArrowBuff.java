@@ -85,9 +85,9 @@ public class ArrowBuff implements Listener {
         type = PotionEffectType.WEAKNESS;
         potionEffects.put(type.toString(), new PotionEffect(type, 300, 1));
         type = PotionEffectType.SLOW;
-        potionEffects.put(type.toString(), new PotionEffect(type, 5, 5));
+        potionEffects.put(type.toString(), new PotionEffect(type, 100, 5));
         type = PotionEffectType.POISON;
-        potionEffects.put(type.toString(), new PotionEffect(type, 3, 1));
+        potionEffects.put(type.toString(), new PotionEffect(type, 60, 1));
         return potionEffects;
     }
 
