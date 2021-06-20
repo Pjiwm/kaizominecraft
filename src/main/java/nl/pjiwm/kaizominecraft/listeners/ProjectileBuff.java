@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 
+import java.util.Random;
+
 public class ProjectileBuff implements Listener {
     /**
      * If the shooter of the projectile is a ghast the explosion of the fireball it shoots will be increased.
@@ -23,7 +25,8 @@ public class ProjectileBuff implements Listener {
 
         if (e.getEntity().getShooter() instanceof Ghast) {
             Fireball fireball = (Fireball) e.getEntity();
-            fireball.setYield(15);
+            int randYield = new Random().nextInt(11);
+            fireball.setYield(10 + randYield);
         } else if (e.getEntity().getShooter() instanceof Blaze) {
             Fireball fireball = (Fireball) e.getEntity();
             fireball.setFireTicks(400);
