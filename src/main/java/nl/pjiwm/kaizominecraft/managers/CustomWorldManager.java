@@ -34,7 +34,7 @@ public class CustomWorldManager {
         end = worldCreator.createWorld();
     }
     /**
-     *
+     * checks whether or not a world is custom or not.
      * @param worldName - the name of the world
      * @return returns a boolean value if the world is custom or not.
      */
