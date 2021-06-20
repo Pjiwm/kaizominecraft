@@ -75,15 +75,15 @@ public class ArrowBuff implements Listener {
         PotionEffectType type;
 
         type = PotionEffectType.CONFUSION;
-        potionEffects.put(type.toString(), new PotionEffect(type, 5, 2));
+        potionEffects.put(type.toString(), new PotionEffect(type, 100, 2));
         type = PotionEffectType.BLINDNESS;
-        potionEffects.put(type.toString(), new PotionEffect(type, 4, 1));
+        potionEffects.put(type.toString(), new PotionEffect(type, 80, 1));
         type = PotionEffectType.HUNGER;
-        potionEffects.put(type.toString(), new PotionEffect(type, 10, 1));
+        potionEffects.put(type.toString(), new PotionEffect(type, 200, 1));
         type = PotionEffectType.LEVITATION;
-        potionEffects.put(type.toString(), new PotionEffect(type, 3, 5));
+        potionEffects.put(type.toString(), new PotionEffect(type, 60, 5));
         type = PotionEffectType.WEAKNESS;
-        potionEffects.put(type.toString(), new PotionEffect(type, 15, 1));
+        potionEffects.put(type.toString(), new PotionEffect(type, 300, 1));
         type = PotionEffectType.SLOW;
         potionEffects.put(type.toString(), new PotionEffect(type, 5, 5));
         type = PotionEffectType.POISON;
