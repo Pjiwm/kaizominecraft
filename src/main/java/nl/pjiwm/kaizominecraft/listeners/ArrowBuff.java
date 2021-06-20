@@ -1,29 +1,32 @@
 package nl.pjiwm.kaizominecraft.listeners;
 
-import nl.pjiwm.kaizominecraft.Kaizo;
 import nl.pjiwm.kaizominecraft.managers.CustomWorldManager;
 import org.bukkit.NamespacedKey;
-import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.Hash;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class ArrowBuff implements Listener {
     private NamespacedKey shooterKey;
-    private Map<PotionEffectType, PotionEffect> pottionEffects;
+    private Map<PotionEffectType, PotionEffect> potionEffects;
+    private JavaPlugin plugin;
 
-    public ArrowBuff() {
-        this.shooterKey = new NamespacedKey(Kaizo.getPlugin(Kaizo.class), "shooter");
-        pottionEffects = setPotionEffects();
+    public ArrowBuff(JavaPlugin plugin) {
+        this.shooterKey = new NamespacedKey(plugin, "shooter");
+        this.potionEffects = setPotionEffects();
+        this.plugin = plugin;
     }
     /**
      * Replaces the arrows that have been shot by a bow.
@@ -61,5 +64,25 @@ public class ArrowBuff implements Listener {
         type = PotionEffectType.POISON;
         potionEffects.put(type, new PotionEffect(type, 3, 1));
         return potionEffects;
+    }
+
+    /**
+     * assigns a random effect to the shooterKey of a mob.
+     * This way you'll be able to check what type of arrow the mob
+     * should be shooting.
+     * @param e - the entity a named space key will be set to.
+     */
+    private void setKey(Entity e) {
+        String[] effects = {
+                PotionEffectType.CONFUSION.toString(),
+                PotionEffectType.BLINDNESS.toString(),
+                PotionEffectType.HUNGER.toString(),
+                PotionEffectType.LEVITATION.toString(),
+                PotionEffectType.WEAKNESS.toString(),
+                PotionEffectType.SLOW.toString(),
+                PotionEffectType.POISON.toString()
+        };
+        int i = new Random().nextInt(effects.length);
+        e.getPersistentDataContainer().set(shooterKey, PersistentDataType.STRING, effects[i]);
     }
 }
