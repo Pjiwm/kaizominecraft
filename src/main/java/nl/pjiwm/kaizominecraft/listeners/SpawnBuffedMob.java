@@ -11,7 +11,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -25,7 +25,7 @@ import java.util.Random;
 public class SpawnBuffedMob implements Listener {
 
     @EventHandler
-    public void spawnEntity(EntitySpawnEvent e) {
+    public void spawnEntity(CreatureSpawnEvent e) {
         if(!CustomWorldManager.isCustomWorld(e.getLocation().getWorld().getName())) {
             return;
         }
@@ -47,7 +47,7 @@ public class SpawnBuffedMob implements Listener {
                 buffStray((Stray) entity);
                 break;
             case SLIME:
-                buffSlime((Slime) entity);
+                buffSlime((Slime) entity, e.getSpawnReason());
         }
         int randInt = new Random().nextInt(150);
         if(randInt == 0 && entity instanceof Mob) {
@@ -126,8 +126,13 @@ public class SpawnBuffedMob implements Listener {
      * slime gets a buff by getting a custom size
      * @param slime - spawned slime that will be given new attributes.
      */
-    private void buffSlime(Slime slime) {
-        int randSize = new Random().nextInt(21);
+    private void buffSlime(Slime slime, CreatureSpawnEvent.SpawnReason spawnReason) {
+//        prevents slimes from infinitely staying big when split
+        if(spawnReason.equals(CreatureSpawnEvent.SpawnReason.SLIME_SPLIT)) {
+            return;
+        }
+
+        int randSize = new Random().nextInt(16);
         slime.setSize(randSize);
     }
 
