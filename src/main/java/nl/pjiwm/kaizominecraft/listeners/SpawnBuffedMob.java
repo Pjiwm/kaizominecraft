@@ -85,7 +85,7 @@ public class SpawnBuffedMob implements Listener {
         int randFuse = 5 + random.nextInt(26);
          creeper.setMaxFuseTicks(randFuse);
 //        random health
-        int randHealth = 25 + random.nextInt(11);
+        int randHealth = 20 + random.nextInt(6);
         creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(randHealth);
 //        explosion radius
         int randExplosion = 8 + random.nextInt(13);
@@ -146,7 +146,7 @@ public class SpawnBuffedMob implements Listener {
         mob.getPersistentDataContainer().set(specialKey, PersistentDataType.STRING, "super");
 
         AttributeInstance health = mob.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        health.setBaseValue(health.getDefaultValue() * 10);
+        health.setBaseValue(health.getDefaultValue() * 5);
 
         Collection<PotionEffect> effects = new ArrayList<>();
         int duration = 1000000;
