@@ -50,7 +50,7 @@ public class SpawnBuffedMob implements Listener {
                 buffSlime((Slime) entity, e.getSpawnReason());
         }
         int randInt = new Random().nextInt(150);
-        if(randInt == 0 && entity instanceof Mob) {
+        if(randInt == 0 && entity instanceof Monster) {
             superBuff((Mob) entity);
         }
     }
