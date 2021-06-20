@@ -15,7 +15,7 @@ public class CustomWorldManager {
     /**
      * generates all custom worlds that are required.
      */
-    public static void geneRateWorlds() {
+    public static void generateWorlds() {
         WorldCreator worldCreator;
 //        overworld
         worldCreator = new WorldCreator(OVERWORLD_NAME);
@@ -34,7 +34,7 @@ public class CustomWorldManager {
         end = worldCreator.createWorld();
     }
     /**
-     *
+     * checks whether or not a world is custom or not.
      * @param worldName - the name of the world
      * @return returns a boolean value if the world is custom or not.
      */

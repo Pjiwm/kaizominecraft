@@ -11,7 +11,7 @@ public final class Kaizo extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        CustomWorldManager.geneRateWorlds();
+        CustomWorldManager.generateWorlds();
         PluginManager pm = getServer().getPluginManager();
         EventRegisterer.registerEvents(pm, this);
             CustomMobWorldSpawner.replaceMobs(getServer().getWorld(CustomWorldManager.OVERWORLD_NAME));
