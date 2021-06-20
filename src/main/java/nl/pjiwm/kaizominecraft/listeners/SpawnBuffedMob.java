@@ -1,5 +1,6 @@
 package nl.pjiwm.kaizominecraft.listeners;
 
+import nl.pjiwm.kaizominecraft.managers.CustomWorldManager;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -20,6 +21,9 @@ public class SpawnBuffedMob implements Listener {
 
     @EventHandler
     public void spawnEntity(EntitySpawnEvent e) {
+        if(!CustomWorldManager.isCustomWorld(e.getLocation().getWorld().getName())) {
+            return;
+        }
         Entity entity = e.getEntity();
         if (entity instanceof Monster) {
             buffMonster(entity);
