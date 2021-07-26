@@ -2,7 +2,7 @@ package nl.pjiwm.kaizominecraft.managers;
 
 import net.minecraft.server.v1_16_R3.WorldServer;
 import nl.pjiwm.kaizominecraft.Kaizo;
-import nl.pjiwm.kaizominecraft.mobs.*;
+import nl.pjiwm.kaizominecraft.mobs.v16.*;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;

@@ -1,4 +1,4 @@
-package nl.pjiwm.kaizominecraft.mobs;
+package nl.pjiwm.kaizominecraft.mobs.v16;
 
 import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Location;
