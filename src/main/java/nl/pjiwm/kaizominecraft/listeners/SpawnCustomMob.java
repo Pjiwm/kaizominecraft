@@ -1,6 +1,6 @@
 package nl.pjiwm.kaizominecraft.listeners;
 
-import nl.pjiwm.kaizominecraft.managers.CustomMobManager;
+import nl.pjiwm.kaizominecraft.managers.CustomMobManagerFactory;
 import nl.pjiwm.kaizominecraft.managers.CustomWorldManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +18,7 @@ public class SpawnCustomMob implements Listener {
     @EventHandler
     public void spawnEntity(EntitySpawnEvent e) {
         if(CustomWorldManager.isCustomWorld(e.getLocation().getWorld().getName())) {
-            CustomMobManager.replaceMob(e.getEntity());
+            CustomMobManagerFactory.getCustomMobManager().replaceMob(e.getEntity());
         }
     }
 }
