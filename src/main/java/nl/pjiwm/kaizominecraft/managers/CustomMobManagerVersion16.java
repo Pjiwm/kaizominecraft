@@ -14,14 +14,15 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Objects;
 
-public class CustomMobManager {
+public class CustomMobManagerVersion16 implements CustomMobManager {
     public static NamespacedKey entityKey = new NamespacedKey(Kaizo.getPlugin(Kaizo.class), "custom");
 
     /**
      * removes any non custom mob if there's a custom mob variant
      * and checks with which custom mob to replace with.
      */
-    public static void replaceMob(Entity entity) {
+    @Override
+    public void replaceMob(Entity entity) {
         Location spawnLocation = entity.getLocation();
         PersistentDataContainer entityContainer = entity.getPersistentDataContainer();
         if (entityContainer.has(entityKey, PersistentDataType.STRING)) {
@@ -62,7 +63,7 @@ public class CustomMobManager {
      * Spawns a custom NMS mob into a minecraft world
      * @param entity the custom mob that will be spawned and replace the original mob
      */
-    private static void spawnMob(net.minecraft.server.v1_16_R3.Entity entity) {
+    private void spawnMob(net.minecraft.server.v1_16_R3.Entity entity) {
         Location location = entity.getBukkitEntity().getLocation();
         CraftLivingEntity newEntity = (CraftLivingEntity) entity.getBukkitEntity();
         PersistentDataContainer dataContainer = newEntity.getPersistentDataContainer();

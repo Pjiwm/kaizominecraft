@@ -1,5 +1,6 @@
 package nl.pjiwm.kaizominecraft;
 
+import nl.pjiwm.kaizominecraft.managers.CustomMobManagerFactory;
 import nl.pjiwm.kaizominecraft.managers.CustomMobWorldSpawner;
 import nl.pjiwm.kaizominecraft.managers.CustomWorldManager;
 import nl.pjiwm.kaizominecraft.managers.EventRegisterer;
@@ -16,6 +17,7 @@ public final class Kaizo extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         CustomWorldManager.geneRateWorlds();
+        new CustomMobManagerFactory(getMinecraftVersion());
         PluginManager pm = getServer().getPluginManager();
         EventRegisterer.registerEvents(pm, this);
         CustomMobWorldSpawner.replaceMobs(getServer().getWorld(CustomWorldManager.OVERWORLD_NAME));
